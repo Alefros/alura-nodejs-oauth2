@@ -17,20 +17,22 @@
     <main>
         <h1>Login</h1>
         <h2>Boas vindas! Faça seu login</h2>
-        <form class="login-form" action="#" method="#">
+        <form class="login-form" action="/" method="POST">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
 
             <label for="password">Senha</label>
             <input type="password" id="password" name="password" required>
 
-            <% if (typeof error !== 'undefined') { %>
-                <p class="error-message"><%= error %></p>
-            <% } %>
+            <% if (typeof error !=='undefined' ) { %>
+                <p class="error-message">
+                    <%= error %>
+                </p>
+                <% } %>
 
-            <div class="login-btn-container">
-                <button type="submit" class="login-btn">Login <i class="arrow fas fa-arrow-right"></i></button>
-            </div>
+                    <div class="login-btn-container">
+                        <button type="submit" class="login-btn">Login <i class="arrow fas fa-arrow-right"></i></button>
+                    </div>
         </form>
         <p class="alternate-accounts"><span>ou entre com outras contas</span></p>
 

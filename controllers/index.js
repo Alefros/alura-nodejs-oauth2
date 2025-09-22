@@ -28,3 +28,18 @@ exports.signup = async (req, res, next) => {
     }
 
 }
+
+exports.login = async (req, res, next) => {
+    const { email, password } = req.body;
+    const user = await User.findOne(email, password);
+    try {
+        if (user) {
+            res.redirect('/members');
+        } else {
+            res.render('index', { error: 'Credenciais inválidas. Tente novamente.' });
+        }
+    } catch (error) {
+        console.error('Error during user login:', error);
+        res.render('index', { error: 'Ocorreu um erro. Tente novamente mais tarde.' });
+    }
+}
