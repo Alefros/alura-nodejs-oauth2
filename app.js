@@ -11,5 +11,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 mongoConnect(() => {
-    app.listen(port)
-})
+    app.listen(port);
+});
