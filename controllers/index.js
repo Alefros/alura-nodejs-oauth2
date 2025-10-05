@@ -45,3 +45,13 @@ exports.login = async (req, res, next) => {
         res.render('index', { error: 'Ocorreu um erro. Tente novamente mais tarde.' });
     }
 }
+
+exports.checkAuthentication = (req, res, next) => {
+    // Placeholder for authentication check logic
+    const isAuthenticated = true; // Replace with real authentication logic 
+    if (isAuthenticated) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
