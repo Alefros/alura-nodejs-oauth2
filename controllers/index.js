@@ -36,6 +36,7 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne(email, password);
     try {
         if (user) {
+            req.session.user = user;
             res.redirect('/members');
         } else {
             res.render('index', { error: 'Credenciais inválidas. Tente novamente.' });
@@ -46,10 +47,17 @@ exports.login = async (req, res, next) => {
     }
 }
 
-exports.checkAuthentication = (req, res, next) => {
-    // Placeholder for authentication check logic
-    const isAuthenticated = true; // Replace with real authentication logic 
-    if (isAuthenticated) {
+exports.logout = (req, res, next) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error during logout:', err);
+         }
+         res.redirect('/');
+    });
+}
+
+exports.checkAuth = (req, res, next) => {
+    if (req.session && req.session.user) {
         next();
     } else {
         res.redirect('/');
