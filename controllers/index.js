@@ -57,7 +57,7 @@ exports.logout = (req, res, next) => {
 }
 
 exports.checkAuth = (req, res, next) => {
-    if (req.session && req.session.user) {
+    if (req.session && req.session.user || req.isAuthenticated()) {
         next();
     } else {
         res.redirect('/');
