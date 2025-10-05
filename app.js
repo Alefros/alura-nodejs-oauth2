@@ -1,9 +1,12 @@
 const express = require('express')
 const routes = require('./routes/routes')
 const mongoConnect = require('./util/database').mongoConnect
+require('dotenv').config()
 
 const app = express();
 const port = 3000;
+
+console.log('Environment:', process.env.ENVIRONMENT);
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
